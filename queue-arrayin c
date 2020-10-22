@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int queue[7];
+int front=-1,rear=-1;
+int isFull()
+{
+    if(rear==7-1)
+        return 1;
+    return 0;
+}
+int isEmpty()
+{
+    if(front>rear)
+        return 1;
+    return 0;
+}
+void enqueue()
+{
+    if(isFull()==1)
+    {
+        printf("\nQueue overflow");
+        return;
+    }
+    int data;
+    printf("\nenter the data to be inserted: ");
+    scanf("%d",&data);
+    rear++;
+    queue[rear]=data;
+}
+void dequeue()
+{
+    if(isEmpty()==1)
+    {
+        printf("\nQueue underflow");
+        return;
+    }
+    front++;
+    queue[front+1]=0;
+}
+void display()
+{
+    if(isEmpty()==1)
+    {
+        printf("\nQueue underflow");
+        return;
+    }
+    printf("\nQueue elements are: ");
+    for(int i=front+1;i<=rear;i++)
+    {
+        printf("%d ",queue[i]);
+    }
+
+}
+int main()
+{
+    int option;
+    do
+    {
+        printf("\n1-Enqueue\n2-Dequeue\n3-Display");
+        printf("\nEnter your choice: ");
+        scanf("%d",&option);
+        switch(option)
+        {
+        case 0:
+            break;
+        case 1:
+            enqueue();
+            break;
+        case 2:
+            dequeue();
+            break;
+        case 3:
+            display();
+            break;
+        default:
+            printf("\nEnter the correct option");
+        }
+    }while(option!=0);
+}
